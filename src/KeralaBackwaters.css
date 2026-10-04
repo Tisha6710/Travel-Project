@@ -1,0 +1,1570 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap');
+
+/* =========================================================
+ROOT
+========================================================= */
+
+:root {
+  --dark-green: #163b32;
+  --deep-green: #0b2922;
+  --green: #2f6b59;
+  --accent-green: #4f806d;
+
+  --cream: #f7f4ec;
+  --cream-dark: #eee9dc;
+
+  --white: #ffffff;
+
+  --text: #42534c;
+  --muted: #78847e;
+
+  --border: #dfe3db;
+
+  --shadow: 0 18px 45px rgba(22, 59, 50, 0.10);
+}
+
+
+/* =========================================================
+RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+MAIN PAGE
+========================================================= */
+
+.taj-page {
+  min-height: 100vh;
+  background: var(--cream);
+}
+
+
+/* =========================================================
+TOP BAR
+========================================================= */
+
+.taj-topbar {
+  width: 100%;
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+
+  position: relative;
+  z-index: 10;
+}
+
+
+/* LOGO */
+
+.taj-logo {
+  font-family: "DM Serif Display", serif;
+  font-size: 30px;
+  color: var(--dark-green);
+  letter-spacing: -0.5px;
+}
+
+.taj-logo span {
+  color: var(--green);
+}
+
+
+/* BACK */
+
+.taj-back {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--text);
+
+  transition: 0.3s ease;
+}
+
+.taj-back:hover {
+  color: var(--green);
+}
+
+
+/* SAVE */
+
+.taj-save {
+  border: 1px solid var(--border);
+
+  background: var(--white);
+
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--dark-green);
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.taj-save:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.taj-save.saved {
+  background: var(--dark-green);
+  color: var(--white);
+  border-color: var(--dark-green);
+}
+
+
+/* =========================================================
+MAIN CONTAINER
+========================================================= */
+
+.taj-container {
+  width: min(1180px, 92%);
+  margin: auto;
+}
+
+
+/* =========================================================
+INTRO
+========================================================= */
+
+.taj-intro {
+  padding: 85px 0 65px;
+}
+
+
+.taj-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--green);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 30px;
+}
+
+.taj-eyebrow span {
+  width: 30px;
+  height: 2px;
+
+  background: var(--green);
+
+  display: block;
+}
+
+
+/* =========================================================
+INTRO MAIN
+========================================================= */
+
+.intro-main {
+  display: block !important;
+}
+
+
+/* TITLE */
+
+.intro-title {
+  margin-bottom: 28px;
+}
+
+.intro-title h1 {
+  font-family: "DM Serif Display", serif;
+
+  font-size: clamp(55px, 7vw, 92px);
+
+  line-height: 0.95;
+
+  font-weight: 400;
+
+  color: var(--dark-green);
+
+  letter-spacing: -2px;
+
+  margin-bottom: 22px;
+}
+
+
+/* LOCATION */
+
+.taj-location {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.taj-location span {
+  color: var(--green);
+  font-size: 13px;
+}
+
+
+/* DESCRIPTION */
+
+.taj-description {
+  max-width: 780px;
+  margin-bottom: 55px;
+}
+
+.taj-description > p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+
+/* MORE CONTENT */
+
+.more-content {
+  margin-top: 20px;
+}
+
+.more-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+
+/* READ MORE */
+
+.read-more-btn {
+  margin-top: 20px;
+
+  border: none;
+  background: transparent;
+
+  color: var(--green);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  transition: 0.3s ease;
+}
+
+.read-more-btn:hover {
+  color: var(--dark-green);
+}
+
+
+/* =========================================================
+HERO IMAGE
+========================================================= */
+
+.taj-hero-image {
+  height: 590px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 2px;
+
+  box-shadow: var(--shadow);
+
+  background: var(--cream-dark);
+}
+
+.taj-hero-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.8s ease;
+}
+
+.taj-hero-image:hover img {
+  transform: scale(1.025);
+}
+
+
+/* HERO OVERLAY */
+
+.hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(5, 25, 20, 0.75),
+      rgba(5, 25, 20, 0.05) 60%
+    );
+}
+
+
+/* HERO CAPTION */
+
+.hero-caption {
+  position: absolute;
+
+  left: 45px;
+  bottom: 38px;
+
+  color: var(--white);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.hero-caption span {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  opacity: 0.85;
+}
+
+.hero-caption strong {
+  font-family: "DM Serif Display", serif;
+
+  font-size: 30px;
+
+  font-weight: 400;
+}
+
+
+/* =========================================================
+DISCOVER
+========================================================= */
+
+.taj-discover {
+  margin-top: 35px;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  background: var(--white);
+
+  border: 1px solid var(--border);
+
+  box-shadow: var(--shadow);
+}
+
+.discover-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 28px 25px;
+
+  border-right: 1px solid var(--border);
+}
+
+.discover-item:last-child {
+  border-right: none;
+}
+
+.discover-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: var(--cream);
+
+  border-radius: 50%;
+
+  font-size: 20px;
+
+  flex-shrink: 0;
+}
+
+.discover-item span {
+  display: block;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  color: var(--muted);
+
+  margin-bottom: 3px;
+}
+
+.discover-item strong {
+  display: block;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: var(--dark-green);
+}
+
+
+/* =========================================================
+GENERAL SECTION
+========================================================= */
+
+.taj-section {
+  padding: 115px 0 0;
+}
+
+.section-heading {
+  margin-bottom: 35px;
+}
+
+.taj-label {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  color: var(--green);
+}
+
+.taj-label::before {
+  content: "";
+
+  width: 28px;
+
+  height: 2px;
+
+  background: var(--green);
+
+  display: inline-block;
+}
+
+
+/* =========================================================
+HISTORY
+========================================================= */
+
+.history-layout {
+  display: block !important;
+}
+
+.history-title {
+  margin-bottom: 35px;
+}
+
+.history-title h2 {
+  font-family: "DM Serif Display", serif;
+
+  font-size: clamp(45px, 5vw, 68px);
+
+  line-height: 1.05;
+
+  font-weight: 400;
+
+  color: var(--dark-green);
+
+  letter-spacing: -1.5px;
+}
+
+.history-title h2 em {
+  color: var(--green);
+  font-style: italic;
+}
+
+.history-text {
+  max-width: 760px;
+}
+
+.history-text p {
+  font-size: 17px;
+
+  line-height: 1.9;
+
+  color: var(--text);
+
+  margin-bottom: 22px;
+}
+
+
+/* =========================================================
+NEARBY
+========================================================= */
+
+.nearby-section {
+  padding-bottom: 115px;
+}
+
+.places-heading {
+  display: block !important;
+
+  margin-bottom: 45px;
+}
+
+.places-heading h2 {
+  font-family: "DM Serif Display", serif;
+
+  font-size: clamp(40px, 5vw, 62px);
+
+  font-weight: 400;
+
+  color: var(--dark-green);
+
+  line-height: 1.1;
+
+  margin-bottom: 18px;
+}
+
+.places-heading p {
+  max-width: 680px;
+
+  color: var(--muted);
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+CARDS
+========================================================= */
+
+.taj-cards {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.taj-card {
+  background: var(--white);
+
+  border: 1px solid var(--border);
+
+  overflow: hidden;
+
+  transition: 0.35s ease;
+}
+
+.taj-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow: var(--shadow);
+}
+
+.card-image {
+  height: 270px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background: var(--cream-dark);
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+.taj-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-number {
+  position: absolute;
+
+  top: 18px;
+  left: 18px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: var(--white);
+
+  color: var(--dark-green);
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.card-content {
+  padding: 28px;
+}
+
+.card-location {
+  display: block;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.7px;
+
+  color: var(--green);
+
+  margin-bottom: 8px;
+}
+
+.card-content h3 {
+  font-family: "DM Serif Display", serif;
+
+  font-size: 30px;
+
+  font-weight: 400;
+
+  color: var(--dark-green);
+
+  margin-bottom: 12px;
+}
+
+.card-content p {
+  font-size: 14px;
+
+  line-height: 1.75;
+
+  color: var(--muted);
+
+  margin-bottom: 20px;
+}
+
+.card-link {
+  color: var(--green);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  transition: 0.3s ease;
+}
+
+.card-link:hover {
+  color: var(--dark-green);
+}
+
+
+/* =========================================================
+TRAVEL INFO
+========================================================= */
+
+.taj-info-section {
+  padding: 100px 0;
+
+  border-top: 1px solid var(--border);
+}
+
+.info-heading {
+  margin-bottom: 45px;
+}
+
+.info-heading h2 {
+  font-family: "DM Serif Display", serif;
+
+  font-size: clamp(40px, 5vw, 60px);
+
+  font-weight: 400;
+
+  color: var(--dark-green);
+
+  margin-top: 10px;
+}
+
+.info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+.info-box {
+  display: flex;
+
+  gap: 20px;
+
+  padding: 28px;
+
+  background: var(--white);
+
+  border: 1px solid var(--border);
+
+  transition: 0.3s ease;
+}
+
+.info-box:hover {
+  box-shadow: var(--shadow);
+
+  transform: translateY(-3px);
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+
+  min-width: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: var(--cream);
+
+  border-radius: 50%;
+
+  font-size: 21px;
+}
+
+.info-box span {
+  display: block;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  color: var(--muted);
+
+  margin-bottom: 5px;
+}
+
+.info-box strong {
+  display: block;
+
+  font-family: "DM Serif Display", serif;
+
+  font-size: 22px;
+
+  font-weight: 400;
+
+  color: var(--dark-green);
+
+  margin-bottom: 7px;
+}
+
+.info-box p {
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  color: var(--muted);
+}
+
+
+/* =========================================================
+CTA
+========================================================= */
+
+.taj-cta {
+  position: relative;
+
+  overflow: hidden;
+
+  background: var(--dark-green);
+
+  padding: 90px 8%;
+
+  color: var(--white);
+}
+
+.cta-content {
+  max-width: 700px;
+}
+
+.cta-content > span {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  opacity: 0.75;
+}
+
+.cta-content h2 {
+  font-family: "DM Serif Display", serif;
+
+  font-size: clamp(45px, 5vw, 70px);
+
+  font-weight: 400;
+
+  line-height: 1.05;
+
+  margin: 15px 0 20px;
+}
+
+.cta-content p {
+  max-width: 570px;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+
+  opacity: 0.8;
+
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 14px 22px;
+
+  background: var(--white);
+
+  color: var(--dark-green);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  transition: 0.3s ease;
+}
+
+.cta-button span {
+  font-size: 18px;
+}
+
+.cta-button:hover {
+  background: var(--cream);
+
+  transform: translateY(-2px);
+}
+
+.cta-decoration {
+  position: absolute;
+
+  right: 7%;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-size: 170px;
+
+  opacity: 0.08;
+}
+
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.taj-footer {
+  background: var(--deep-green);
+
+  color: var(--white);
+
+  padding: 55px 6% 25px;
+}
+
+.footer-inner {
+  max-width: 1180px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.footer-logo {
+  font-family: "DM Serif Display", serif;
+
+  font-size: 28px;
+}
+
+.footer-logo span {
+  color: #6e9b88;
+}
+
+.footer-inner p {
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 13px;
+}
+
+.footer-links {
+  display: flex;
+
+  gap: 25px;
+}
+
+.footer-links a {
+  font-size: 13px;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+}
+
+.footer-bottom {
+  max-width: 1180px;
+
+  margin: 40px auto 0;
+
+  padding-top: 20px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 11px;
+
+  color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .taj-intro {
+    padding: 65px 0 50px;
+  }
+
+  .taj-hero-image {
+    height: 500px;
+  }
+
+  .taj-discover {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .discover-item {
+    border-right: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+  }
+
+  .discover-item:nth-child(2) {
+    border-right: none;
+  }
+
+  .discover-item:nth-child(3),
+  .discover-item:nth-child(4) {
+    border-bottom: none;
+  }
+
+  .discover-item:nth-child(4) {
+    border-right: none;
+  }
+
+  .taj-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-wrap: wrap;
+  }
+
+}
+
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .taj-topbar {
+    min-height: 75px;
+
+    padding: 0 5%;
+  }
+
+  .taj-logo {
+    font-size: 25px;
+  }
+
+  .taj-back {
+    display: none;
+  }
+
+  .taj-save {
+    padding: 8px 14px;
+
+    font-size: 12px;
+  }
+
+  .taj-container {
+    width: 90%;
+  }
+
+  .taj-intro {
+    padding: 55px 0 40px;
+  }
+
+  .taj-eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .intro-title h1 {
+    font-size: clamp(48px, 14vw, 68px);
+
+    letter-spacing: -1px;
+  }
+
+  .taj-description > p {
+    font-size: 16px;
+  }
+
+  .taj-description {
+    margin-bottom: 35px;
+  }
+
+  .taj-hero-image {
+    height: 420px;
+  }
+
+  .hero-caption {
+    left: 25px;
+
+    bottom: 25px;
+  }
+
+  .hero-caption strong {
+    font-size: 24px;
+  }
+
+  .taj-discover {
+    grid-template-columns: 1fr;
+  }
+
+  .discover-item {
+    border-right: none !important;
+
+    border-bottom: 1px solid var(--border) !important;
+
+    padding: 22px 20px;
+  }
+
+  .discover-item:last-child {
+    border-bottom: none !important;
+  }
+
+  .taj-section {
+    padding-top: 75px;
+  }
+
+  .history-title h2 {
+    font-size: 46px;
+  }
+
+  .history-text p {
+    font-size: 15px;
+  }
+
+  .nearby-section {
+    padding-bottom: 75px;
+  }
+
+  .taj-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card-image {
+    height: 250px;
+  }
+
+  .taj-info-section {
+    padding: 75px 0;
+  }
+
+  .info-box {
+    padding: 22px;
+
+    flex-direction: column;
+  }
+
+  .taj-cta {
+    padding: 65px 25px;
+  }
+
+  .cta-content h2 {
+    font-size: 46px;
+  }
+
+  .cta-decoration {
+    font-size: 100px;
+
+    right: 5%;
+
+    top: 15%;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+}
+/* ==================================================
+   KERALA BACKWATERS - REVIEWS
+================================================== */
+
+.kerala-reviews-section {
+  width: 100%;
+  margin: 80px auto;
+  padding: 60px 50px;
+  background: #f7f4ec;
+  border-radius: 24px;
+  box-sizing: border-box;
+}
+
+.kerala-reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 35px;
+}
+
+.kerala-reviews-title h2 {
+  margin: 8px 0 10px;
+  color: #163b32;
+  font-size: 42px;
+  line-height: 1.15;
+}
+
+.kerala-reviews-title p {
+  margin: 0;
+  color: #78847e;
+  line-height: 1.7;
+}
+
+.kerala-overall-rating {
+  min-width: 190px;
+  padding: 22px 25px;
+  background: #fff;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(22, 59, 50, 0.08);
+}
+
+.kerala-overall-rating strong {
+  display: block;
+  font-size: 44px;
+  font-weight: 700;
+  color: #163b32;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.kerala-review-stars {
+  color: #d79a32;
+  font-size: 19px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.kerala-star {
+  color: #d8d8d8;
+}
+
+.kerala-star.active {
+  color: #d79a32;
+}
+
+.kerala-overall-rating span {
+  display: block;
+  margin-top: 8px;
+  color: #78847e;
+  font-size: 13px;
+}
+
+
+/* ================= WRITE REVIEW ================= */
+
+.kerala-write-review-area {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 20;
+}
+
+.kerala-write-review-btn {
+  position: relative;
+  z-index: 21;
+  border: none;
+  outline: none;
+  background: #163b32;
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.kerala-write-review-btn:hover {
+  background: #2f6b59;
+  transform: translateY(-2px);
+}
+
+
+/* ================= REVIEW FORM ================= */
+
+.kerala-review-form {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  margin-bottom: 35px;
+  background: #fff;
+  border: 1px solid #dfe3db;
+  border-radius: 18px;
+  position: relative;
+  z-index: 20;
+}
+
+.kerala-form-heading {
+  margin-bottom: 25px;
+}
+
+.kerala-form-heading h3 {
+  margin: 0 0 7px;
+  color: #163b32;
+  font-size: 25px;
+}
+
+.kerala-form-heading p {
+  margin: 0;
+  color: #78847e;
+  line-height: 1.6;
+}
+
+
+/* ================= STAR SELECT ================= */
+
+.kerala-rating-select {
+  margin-bottom: 22px;
+}
+
+.kerala-rating-select label {
+  display: block;
+  margin-bottom: 8px;
+  color: #42534c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.kerala-select-stars {
+  display: flex;
+  gap: 5px;
+}
+
+.kerala-select-star {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  color: #d5d5d5;
+  font-size: 31px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.kerala-select-star.selected {
+  color: #d79a32;
+}
+
+.kerala-select-star:hover {
+  color: #d79a32;
+}
+
+
+/* ================= INPUTS ================= */
+
+.kerala-form-group {
+  margin-bottom: 20px;
+}
+
+.kerala-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #42534c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.kerala-form-group input,
+.kerala-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #dfe3db;
+  border-radius: 9px;
+  background: #fff;
+  color: #42534c;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.kerala-form-group input:focus,
+.kerala-form-group textarea:focus {
+  border-color: #2f6b59;
+  box-shadow: 0 0 0 3px rgba(47, 107, 89, 0.08);
+}
+
+.kerala-form-group textarea {
+  resize: vertical;
+}
+
+
+/* ================= SUBMIT ================= */
+
+.kerala-submit-review-btn {
+  position: relative;
+  z-index: 21;
+  border: none;
+  outline: none;
+  background: #163b32;
+  color: #fff;
+  padding: 13px 25px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.kerala-submit-review-btn:hover {
+  background: #2f6b59;
+  transform: translateY(-2px);
+}
+
+
+/* ================= REVIEW CARDS ================= */
+
+.kerala-reviews-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.kerala-review-card {
+  padding: 25px;
+  background: #fff;
+  border: 1px solid #dfe3db;
+  border-radius: 17px;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+}
+
+.kerala-review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(22, 59, 50, 0.08);
+}
+
+.kerala-review-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.kerala-review-avatar {
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  border-radius: 50%;
+  background: #163b32;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.kerala-review-user h3 {
+  margin: 0 0 4px;
+  color: #163b32;
+  font-size: 16px;
+}
+
+.kerala-review-text {
+  margin: 0;
+  color: #42534c;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+  .kerala-reviews-section {
+    padding: 45px 25px;
+  }
+
+  .kerala-reviews-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .kerala-overall-rating {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .kerala-reviews-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .kerala-reviews-section {
+    margin: 50px auto;
+    padding: 35px 18px;
+    border-radius: 18px;
+  }
+
+  .kerala-reviews-title h2 {
+    font-size: 30px;
+  }
+
+  .kerala-reviews-list {
+    grid-template-columns: 1fr;
+  }
+
+  .kerala-write-review-area {
+    justify-content: flex-start;
+  }
+
+  .kerala-write-review-btn {
+    width: 100%;
+  }
+
+  .kerala-review-form {
+    padding: 22px;
+  }
+
+  .kerala-submit-review-btn {
+    width: 100%;
+  }
+
+}
