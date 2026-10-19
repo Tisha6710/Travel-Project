@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 /* ================= PAGES ================= */
@@ -26,6 +26,7 @@ import Mumbai from "./Mumbai";
 import Delhi from "./Delhi";
 import Darjeeling from "./Darjeeling";
 import Andaman from "./Andaman";
+
 
 /* ================= EXPERIENCES ================= */
 
@@ -56,7 +57,11 @@ import VaranasiGhats from "./VaranasiGhats";
 import "./App.css";
 import "./effects.css";
 import useEffects from "./useEffects";
-
+/* ================= HOTELS ================= */
+import Hotels from "./Hotels";
+/* ================= Restaurants ================= */
+import Restaurants from "./Restaurants";
+import Forums from "./Forums";
 
 /* =========================================================
    HOME PAGE
@@ -67,7 +72,19 @@ function Home() {
   const [search, setSearch] = useState("");
   const [favorites, setFavorites] = useState([]);
   const [iconicPage, setIconicPage] = useState(0);
+const [showSecondNav, setShowSecondNav] = useState(false);
 
+useEffect(() => {
+  const handleScroll = () => {
+    setShowSecondNav(window.scrollY > 150);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
 
   /* =========================================================
      ICONIC PLACES DATA
@@ -387,6 +404,14 @@ function Home() {
 
 
       <main>
+        {showSecondNav && (
+  <nav className="secondary-navbar">
+    <a href="#experiences">Things to Do</a>
+    <Link to="/hotels">Hotels</Link>
+   <Link to="/restaurants">Restaurants</Link>
+     <Link to="/forums">Forums</Link>
+  </nav>
+)}
 
         {/* ================= HERO ================= */}
 
@@ -2427,7 +2452,10 @@ function App() {
         path="/gateway-of-india"
         element={<GatewayOfIndia />}
       />
+      <Route path="/hotels" element={<Hotels />} />
+              <Route path="/restaurants" element={<Restaurants />} />
 
+<Route path="/forums" element={<Forums />} />
 
     </Routes>
 
