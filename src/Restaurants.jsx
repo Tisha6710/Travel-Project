@@ -193,6 +193,7 @@ export default function Restaurants() {
   const [favorites, setFavorites] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
   const filteredRestaurants = restaurants.filter((restaurant) => {
     const matchesCity =
@@ -278,6 +279,10 @@ export default function Restaurants() {
         Math.min(page + direction, Math.max(totalPages - 1, 0))
       )
     );
+  }
+
+  function exploreDining(restaurant) {
+    setSelectedRestaurant(restaurant);
   }
 
   return (
@@ -372,7 +377,10 @@ export default function Restaurants() {
       {/* BENEFITS */}
       <section className="restaurants-benefits">
         <div className="restaurants-benefit">
-          <span className="restaurants-benefit-icon" aria-hidden="true">
+          <span
+            className="restaurants-benefit-icon"
+            aria-hidden="true"
+          >
             ✓
           </span>
           <div>
@@ -385,7 +393,10 @@ export default function Restaurants() {
         </div>
 
         <div className="restaurants-benefit">
-          <span className="restaurants-benefit-icon" aria-hidden="true">
+          <span
+            className="restaurants-benefit-icon"
+            aria-hidden="true"
+          >
             ♡
           </span>
           <div>
@@ -398,7 +409,10 @@ export default function Restaurants() {
         </div>
 
         <div className="restaurants-benefit">
-          <span className="restaurants-benefit-icon" aria-hidden="true">
+          <span
+            className="restaurants-benefit-icon"
+            aria-hidden="true"
+          >
             ↗
           </span>
           <div>
@@ -526,9 +540,22 @@ export default function Restaurants() {
                         </p>
 
                         <div className="restaurant-card-footer">
-                          <span className="restaurant-details-label">
+                          <button
+                            type="button"
+                            className="restaurant-details-label"
+                            onClick={() => exploreDining(restaurant)}
+                            style={{
+                              border: "none",
+                              background: "transparent",
+                              padding: 0,
+                              font: "inherit",
+                              color: "inherit",
+                              cursor: "pointer",
+                              textAlign: "left",
+                            }}
+                          >
                             Explore dining
-                          </span>
+                          </button>
 
                           <a
                             className="restaurant-view-button"
@@ -599,6 +626,167 @@ export default function Restaurants() {
           </div>
         )}
       </main>
+
+      {/* RESTAURANT DETAILS POPUP */}
+      {selectedRestaurant && (
+        <div
+          className="restaurant-modal-overlay"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setSelectedRestaurant(null);
+            }
+          }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            background: "rgba(0, 0, 0, 0.65)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            overflowY: "auto",
+          }}
+        >
+          <section
+            className="restaurant-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="restaurant-detail-title"
+            style={{
+              background: "#fff",
+              borderRadius: "18px",
+              width: "100%",
+              maxWidth: "650px",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              position: "relative",
+              color: "#123b2a",
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedRestaurant(null)}
+              aria-label="Close restaurant details"
+              style={{
+                position: "absolute",
+                top: "12px",
+                right: "12px",
+                zIndex: 1,
+                width: "40px",
+                height: "40px",
+                border: "none",
+                borderRadius: "50%",
+                background: "#fff",
+                fontSize: "24px",
+                cursor: "pointer",
+              }}
+            >
+              ×
+            </button>
+
+            <RestaurantImage
+              src={selectedRestaurant.image}
+              alt={selectedRestaurant.name}
+            />
+
+            <div style={{ padding: "24px" }}>
+              <p
+                style={{
+                  color: "#0d9488",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                }}
+              >
+                {selectedRestaurant.city}, India
+              </p>
+
+              <h2
+                id="restaurant-detail-title"
+                style={{ margin: "8px 0 12px" }}
+              >
+                {selectedRestaurant.name}
+              </h2>
+
+              <p style={{ lineHeight: 1.8, color: "#52635a" }}>
+                Explore {selectedRestaurant.name}, listed in{" "}
+                {selectedRestaurant.location}. Its listed cuisine
+                is {selectedRestaurant.cuisine}. Use this information
+                to explore dining options during your visit to{" "}
+                {selectedRestaurant.city}.
+              </p>
+
+              <h3 style={{ marginTop: "22px" }}>
+                Restaurant information
+              </h3>
+
+              <p style={{ lineHeight: 1.8 }}>
+                <strong>📍 Location:</strong>{" "}
+                {selectedRestaurant.location}
+              </p>
+
+              <p style={{ lineHeight: 1.8 }}>
+                <strong>🍽️ Cuisine:</strong>{" "}
+                {selectedRestaurant.cuisine}
+              </p>
+
+              <p style={{ lineHeight: 1.8 }}>
+                <strong>📌 Destination:</strong>{" "}
+                {selectedRestaurant.city}, India
+              </p>
+
+              <h3 style={{ marginTop: "22px" }}>
+                Before you visit
+              </h3>
+
+              <p style={{ lineHeight: 1.8, color: "#52635a" }}>
+                Check current opening hours, menu, prices,
+                availability and customer reviews before visiting.
+                These details have not been verified by TravelMate.
+              </p>
+
+              <a
+                href={selectedRestaurant.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "block",
+                  marginTop: "22px",
+                  padding: "14px",
+                  background: "#0d9488",
+                  color: "#fff",
+                  textAlign: "center",
+                  textDecoration: "none",
+                  borderRadius: "10px",
+                  fontWeight: 700,
+                }}
+              >
+                Find restaurants on Google Maps ↗
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setSelectedRestaurant(null)}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  marginTop: "10px",
+                  padding: "12px",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "10px",
+                  background: "#fff",
+                  color: "#123b2a",
+                  cursor: "pointer",
+                  fontWeight: 600,
+                }}
+              >
+                Close details
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
 
       {/* FOOTER */}
       <footer className="restaurants-footer">

@@ -178,6 +178,16 @@ export default function Hotels() {
   const [showFavorites, setShowFavorites] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
 
+  // Hotel details modal and demo booking form
+  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [bookingMessage, setBookingMessage] = useState("");
+  const [guestName, setGuestName] = useState("");
+  const [guestEmail, setGuestEmail] = useState("");
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [guestCount, setGuestCount] = useState("2");
+
   const filteredHotels = hotels.filter((hotel) => {
     const matchesCity =
       !selectedCity || hotel.city === selectedCity;
@@ -265,6 +275,38 @@ export default function Hotels() {
     );
   }
 
+  function openHotelDetails(hotel) {
+    setSelectedHotel(hotel);
+    setShowBookingForm(false);
+    setBookingMessage("");
+    setGuestName("");
+    setGuestEmail("");
+    setCheckIn("");
+    setCheckOut("");
+    setGuestCount("2");
+  }
+
+  function closeHotelDetails() {
+    setSelectedHotel(null);
+    setShowBookingForm(false);
+    setBookingMessage("");
+  }
+
+  function handleBookingRequest(event) {
+    event.preventDefault();
+
+    if (checkOut <= checkIn) {
+      setBookingMessage(
+        "Please select a check-out date after your check-in date."
+      );
+      return;
+    }
+
+    setBookingMessage(
+      `Thanks, ${guestName}! Your demo booking request for ${selectedHotel.name} has been prepared. This is a demo only; no actual booking has been submitted.`
+    );
+  }
+
   return (
     <div className="hotels-page">
       {/* NAVBAR */}
@@ -287,9 +329,7 @@ export default function Hotels() {
             aria-pressed={showFavorites}
           >
             <span aria-hidden="true">💗</span>
-            <span>
-              {favorites.length}
-            </span>
+            <span>{favorites.length}</span>
           </button>
         </nav>
 
@@ -387,8 +427,8 @@ export default function Hotels() {
           <div>
             <h3>Explore Your Stay</h3>
             <p>
-              Open the hotel link to explore available details
-              and booking information.
+              View hotel information and prepare a booking
+              request directly in TravelMate.
             </p>
           </div>
         </div>
@@ -500,18 +540,16 @@ export default function Hotels() {
                         </p>
 
                         <div className="hotel-card-footer">
-                          <span className="hotel-verified">
-                            Hotel details
-                          </span>
+                        
 
-                          <a
+                          {/* Opens the in-app details modal */}
+                          <button
+                            type="button"
                             className="hotel-view-button"
-                            href={hotel.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            onClick={() => openHotelDetails(hotel)}
                           >
-                            View hotel ↗
-                          </a>
+                            View hotel →
+                          </button>
                         </div>
                       </div>
                     </article>
@@ -574,6 +612,358 @@ export default function Hotels() {
         )}
       </main>
 
+      {/* HOTEL DETAILS MODAL */}
+      {selectedHotel && (
+        <div
+          className="hotel-modal-overlay"
+          onClick={closeHotelDetails}
+          role="presentation"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(15, 23, 42, 0.72)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            overflowY: "auto",
+          }}
+        >
+          <section
+            className="hotel-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="hotel-modal-title"
+            onClick={(event) => event.stopPropagation()}
+            style={{
+              position: "relative",
+              background: "#fff",
+              color: "#1f2937",
+              width: "100%",
+              maxWidth: "680px",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              borderRadius: "18px",
+              boxShadow: "0 25px 70px rgba(0,0,0,0.3)",
+            }}
+          >
+            <button
+              type="button"
+              onClick={closeHotelDetails}
+              aria-label="Close hotel details"
+              style={{
+                position: "absolute",
+                zIndex: 2,
+                top: "12px",
+                right: "12px",
+                width: "40px",
+                height: "40px",
+                border: "none",
+                borderRadius: "50%",
+                background: "#fff",
+                color: "#111827",
+                fontSize: "25px",
+                cursor: "pointer",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+              }}
+            >
+              ×
+            </button>
+
+            <img
+              src={selectedHotel.image}
+              alt={selectedHotel.name}
+              onError={(event) => {
+                event.currentTarget.onerror = null;
+                event.currentTarget.src = fallbackImage;
+              }}
+              style={{
+                display: "block",
+                width: "100%",
+                height: "260px",
+                objectFit: "cover",
+              }}
+            />
+
+            <div style={{ padding: "24px" }}>
+              <p
+                style={{
+                  margin: "0 0 8px",
+                  color: "#0d9488",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                  fontSize: "12px",
+                }}
+              >
+                {selectedHotel.city}, India
+              </p>
+
+              <h2
+                id="hotel-modal-title"
+                style={{
+                  margin: "0 0 10px",
+                  fontSize: "28px",
+                  color: "#111827",
+                }}
+              >
+                {selectedHotel.name}
+              </h2>
+
+              <p style={{ margin: "0 0 18px", color: "#4b5563" }}>
+                📍 {selectedHotel.location}
+              </p>
+
+              <p style={{ lineHeight: 1.7, color: "#4b5563" }}>
+                Explore {selectedHotel.name} in {selectedHotel.city}.
+                Review the stay details and prepare a booking request
+                using the form below.
+              </p>
+
+              <h3 style={{ margin: "22px 0 12px" }}>
+                Stay highlights
+              </h3>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "10px",
+                  marginBottom: "24px",
+                }}
+              >
+                {[
+                  "Comfortable stay",
+                  "Convenient location",
+                  "Travel-friendly",
+                  "Hotel information",
+                ].map((facility) => (
+                  <span
+                    key={facility}
+                    style={{
+                      padding: "9px 12px",
+                      borderRadius: "20px",
+                      background: "#f0fdfa",
+                      color: "#0f766e",
+                      fontSize: "13px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    ✓ {facility}
+                  </span>
+                ))}
+              </div>
+
+              {!showBookingForm ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowBookingForm(true);
+                    setBookingMessage("");
+                  }}
+                  style={{
+                    width: "100%",
+                    padding: "14px 18px",
+                    border: "none",
+                    borderRadius: "10px",
+                    background: "#0d9488",
+                    color: "#fff",
+                    fontSize: "16px",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                  }}
+                >
+                  Request a booking
+                </button>
+              ) : (
+                <form onSubmit={handleBookingRequest}>
+                  <h3 style={{ margin: "0 0 16px" }}>
+                    Booking request
+                  </h3>
+
+                  <label
+                    htmlFor="guest-name"
+                    style={modalLabelStyle}
+                  >
+                    Your name
+                  </label>
+                  <input
+                    id="guest-name"
+                    type="text"
+                    value={guestName}
+                    onChange={(event) =>
+                      setGuestName(event.target.value)
+                    }
+                    placeholder="Enter your name"
+                    required
+                    style={modalInputStyle}
+                  />
+
+                  <label
+                    htmlFor="guest-email"
+                    style={modalLabelStyle}
+                  >
+                    Email address
+                  </label>
+                  <input
+                    id="guest-email"
+                    type="email"
+                    value={guestEmail}
+                    onChange={(event) =>
+                      setGuestEmail(event.target.value)
+                    }
+                    placeholder="you@example.com"
+                    required
+                    style={modalInputStyle}
+                  />
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                      gap: "12px",
+                    }}
+                  >
+                    <div>
+                      <label
+                        htmlFor="check-in"
+                        style={modalLabelStyle}
+                      >
+                        Check-in
+                      </label>
+                      <input
+                        id="check-in"
+                        type="date"
+                        value={checkIn}
+                        min={new Date().toISOString().split("T")[0]}
+                        onChange={(event) =>
+                          setCheckIn(event.target.value)
+                        }
+                        required
+                        style={modalInputStyle}
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="check-out"
+                        style={modalLabelStyle}
+                      >
+                        Check-out
+                      </label>
+                      <input
+                        id="check-out"
+                        type="date"
+                        value={checkOut}
+                        min={checkIn || new Date().toISOString().split("T")[0]}
+                        onChange={(event) =>
+                          setCheckOut(event.target.value)
+                        }
+                        required
+                        style={modalInputStyle}
+                      />
+                    </div>
+                  </div>
+
+                  <label
+                    htmlFor="guest-count"
+                    style={modalLabelStyle}
+                  >
+                    Number of guests
+                  </label>
+                  <select
+                    id="guest-count"
+                    value={guestCount}
+                    onChange={(event) =>
+                      setGuestCount(event.target.value)
+                    }
+                    style={modalInputStyle}
+                  >
+                    <option value="1">1 guest</option>
+                    <option value="2">2 guests</option>
+                    <option value="3">3 guests</option>
+                    <option value="4">4 guests</option>
+                    <option value="5">5 guests</option>
+                    <option value="6">6+ guests</option>
+                  </select>
+
+                  <button
+                    type="submit"
+                    style={{
+                      width: "100%",
+                      marginTop: "10px",
+                      padding: "14px 18px",
+                      border: "none",
+                      borderRadius: "10px",
+                      background: "#0d9488",
+                      color: "#fff",
+                      fontSize: "16px",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Submit demo request
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowBookingForm(false);
+                      setBookingMessage("");
+                    }}
+                    style={{
+                      width: "100%",
+                      marginTop: "10px",
+                      padding: "11px",
+                      border: "1px solid #d1d5db",
+                      borderRadius: "10px",
+                      background: "#fff",
+                      color: "#374151",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Back to hotel details
+                  </button>
+                </form>
+              )}
+
+              {bookingMessage && (
+                <p
+                  role="status"
+                  style={{
+                    marginTop: "16px",
+                    padding: "12px",
+                    borderRadius: "8px",
+                    background: bookingMessage.startsWith("Please")
+                      ? "#fef2f2"
+                      : "#f0fdfa",
+                    color: bookingMessage.startsWith("Please")
+                      ? "#b91c1c"
+                      : "#115e59",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {bookingMessage}
+                </p>
+              )}
+
+              <p
+                style={{
+                  margin: "16px 0 0",
+                  fontSize: "12px",
+                  lineHeight: 1.5,
+                  color: "#6b7280",
+                }}
+              >
+                Demo only: this form does not submit a real reservation
+                or send your information to a hotel.
+              </p>
+            </div>
+          </section>
+        </div>
+      )}
+
       {/* FOOTER */}
       <footer className="hotels-footer">
         <strong>✈ TravelMate</strong>
@@ -583,3 +973,24 @@ export default function Hotels() {
   );
 }
 
+const modalLabelStyle = {
+  display: "block",
+  margin: "14px 0 7px",
+  fontWeight: 600,
+  fontSize: "14px",
+  color: "#374151",
+};
+
+const modalInputStyle = {
+  boxSizing: "border-box",
+  display: "block",
+  width: "100%",
+  minWidth: 0,
+  padding: "12px",
+  border: "1px solid #d1d5db",
+  borderRadius: "8px",
+  background: "#fff",
+  color: "#111827",
+  fontSize: "15px",
+  marginBottom: "8px",
+};
