@@ -63,8 +63,11 @@ import Hotels from "./Hotels";
 import Restaurants from "./Restaurants";
 import Forums from "./Forums";
 import PlanWithAI from "./PlanWithAI";
-
-
+import CultureDetails from "./CultureDetails";
+import WaterDetail from "./WaterDetail";
+import NatureDetail from "./NatureDetail";
+import AdventureDetail from "./Adventuredetail";
+import FoodDetail from "./Fooddetail";
 /* =========================================================
    HOME PAGE
 ========================================================= */
@@ -354,6 +357,9 @@ function Home() {
             </div>
           </div>
         </section>
+        <button onClick={() => window.location.href = "/destinations"}>
+  Explore
+</button>
 
 
         {/* ================= DESTINATIONS ================= */}
@@ -1324,6 +1330,14 @@ function App() {
       <Route path="/restaurants" element={<Restaurants />} />
       <Route path="/forums" element={<Forums />} />
       <Route path="/plan-with-ai" element={<PlanWithAI />} />
+      <Route
+  path="/culture/:slug"
+  element={<CultureDetails />}
+/>
+<Route path="/water/:id" element={<WaterDetail />} />
+<Route path="/nature/:id" element={<NatureDetail />} />
+<Route path="/adventure/:id" element={<AdventureDetail />} />
+<Route path="/food/:id" element={<FoodDetail />} />
     </Routes>
   );
 }
